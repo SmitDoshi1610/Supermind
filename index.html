@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github API Search</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./scripts/script.js"></script>
+</head>
+<body>
+    <div class="app">
+        <div class="top-bar relative rounded-md shadow-sm flex mx-6 my-8 p-4">
+            <h1 class="font-sans text-2xl uppercase font-semibold">Get Supermind</h1>
+        </div>
+        <div class="top-bar relative rounded-md shadow-sm flex mx-6 my-6 p-3">
+            <h5 class="font-sans text-x uppercase font-semibold underline underline-offset-2">Users(100)</h5>
+            <div class="flex justify-center items-center">
+                <button name="Search Box" id="search-field" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-5">Search</button>
+                <button type="reset" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Reset</button>
+            </div>
+        </div>
+    
+        <div class="shadow border-b border-gray-200 sm:rounded-lg mx-6 mb-5 mr-2 flex justify-center p-2 items-center">
+            <div><label for="">Search By UserName</label><input class="mt-2 bg-slate-50 h-8" type="text" placeholder="Search..."></div>
+            <div><label for="">Search By Email</label><input class="mt-2 bg-slate-50 h-8" type="text" placeholder="Search..."></div>
+            <div><label for="">Count</label><input class="mt-2 bg-slate-50 h-8" type="text" placeholder="10"></div>
+            <div><label for="">Gender</label><input class="mt-2 bg-slate-50 h-8" type="text" placeholder="Select Status"></div>
+            <div><label for="">Subcription Status</label><input class="mt-2 bg-slate-50 h-8" type="text" placeholder="Select a type"></div>
+            
+        </div>
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mx-6 mb-4">
+            <table class="min-w-full divide-y divide-gray-200 overflow-y-scroll	">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                            <div class="flex">
+                                <h2>Name</h2>
+                                <button class="sort-btn__name bg-gray-200 ml-2 rounded-full px-2">
+                                    <svg class="byName-btn arrow-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="byName-btn arrow-down hidden" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                            <div class="flex">
+                                <h2>Status</h2>
+                                <button class="asc sort-btn__stars bg-gray-200 ml-2 rounded-full px-2">
+                                    <svg class="byStars-btn arrow-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="byStars-btn arrow-down hidden" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </th>
+                        <!-- <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">Stars</th> -->
+                        <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                            <div class="flex">
+                                <h2>Gender</h2>
+                                <button class="asc sort-btn__forks bg-gray-200 ml-2 rounded-full px-2">
+                                    <svg class="byForks-btn arrow-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="byForks-btn arrow-down hidden" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                            <div class="flex">
+                                <h2>Credit Card No</h2>
+                                <button class="asc sort-btn__language bg-gray-200 ml-2 rounded-full px-2">
+                                    <svg class="byLanguage-btn arrow-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="byLanguage-btn arrow-down hidden" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                            <div class="flex">
+                                <h2>Last Updated</h2>
+                                <button class="asc sort-btn__lastUpdated bg-gray-200 ml-2 rounded-full px-2">
+                                    <svg class="byLastUpdated-btn arrow-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="byLastUpdated-btn arrow-down hidden" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-rows bg-white divide-y divide-gray-200">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
